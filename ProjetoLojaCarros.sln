@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevIOApi", "ProjetoLojaCarros\DevIOApi.csproj", "{4EDEA513-2875-418C-ACF3-42E33EE6678D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EDEA513-2875-418C-ACF3-42E33EE6678D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDEA513-2875-418C-ACF3-42E33EE6678D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDEA513-2875-418C-ACF3-42E33EE6678D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDEA513-2875-418C-ACF3-42E33EE6678D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7BF705E-6613-4867-A4E7-EED535B0E90B}
+	EndGlobalSection
+EndGlobal
