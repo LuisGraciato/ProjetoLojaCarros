@@ -22,4 +22,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Downloads\01 MinhaAPICompleta 6.0\src\DevIO.Business\DevIO.Business.csproj" />
+    <ProjectReference Include="..\..\..\..\Downloads\01 MinhaAPICompleta 6.0\src\DevIO.Data\DevIO.Data.csproj" />
+  </ItemGroup>
+
 </Project>
