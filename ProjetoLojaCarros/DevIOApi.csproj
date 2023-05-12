@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\01 MinhaAPICompleta 6.0\src\DevIO.Business\DevIO.Business.csproj" />
-    <ProjectReference Include="..\..\..\..\Downloads\01 MinhaAPICompleta 6.0\src\DevIO.Data\DevIO.Data.csproj" />
+    <ProjectReference Include="..\DevIoBusiness\DevIoBusiness.csproj" />
+    <ProjectReference Include="..\DevIoData\DevIoData.csproj" />
   </ItemGroup>
 
 </Project>
