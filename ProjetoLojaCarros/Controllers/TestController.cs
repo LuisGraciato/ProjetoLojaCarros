@@ -5,7 +5,7 @@ namespace ProjetoLojaCarros.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MainController : ControllerBase
+    public class TestController : ControllerBase
     {
         [HttpGet]
         public string Get()

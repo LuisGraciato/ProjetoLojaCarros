@@ -12,7 +12,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 namespace LojaCarrosApi.Controllers
 {
     [Route("api")]
-    public class AuthController : MainController
+    public class AuthController : TestController
     {
         private readonly SignInManager<IdentityUser> _singInManager;
         private readonly UserManager<IdentityUser> _userManager;
