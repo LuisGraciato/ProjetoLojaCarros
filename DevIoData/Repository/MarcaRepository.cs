@@ -49,6 +49,17 @@ namespace DevIoData.Repository
             await _dbContext.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> ActivateMarca(int id)
+        {
+            var marca = await _dbContext.Marcas.FindAsync(id);
+            if (marca == null)
+                return false;
+
+            marca.Ativo = true;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
     }
 
 }

@@ -38,5 +38,9 @@ namespace DevIoBusiness.Services
         {
             return await _marcaRepository.DeactivateMarca(id);
         }
+        public async Task<bool> ActivateMarca(int id)
+        {
+            return await _marcaRepository.ActivateMarca(id);
+        }
     }
 }

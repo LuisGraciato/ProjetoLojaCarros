@@ -9,6 +9,7 @@ namespace DevIoBusiness.Intefaces
         Task<Marca> AddMarca(Marca marca);
         Task<Marca> UpdateMarca(Marca marca);
         Task<bool> DeactivateMarca(int id);
+        Task<bool> ActivateMarca(int id);
     }
 
 }

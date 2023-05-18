@@ -65,7 +65,6 @@ namespace LojaCarrosApi.Controllers
                 return NotFound();
 
             marca.Nome = marcaViewModel.Nome;
-            marca.Ativo = marcaViewModel.Ativo;
             marca.DataAlteracao = DateTime.Now;
 
             var updatedMarca = await _marcaService.UpdateMarca(marca);
@@ -74,6 +73,25 @@ namespace LojaCarrosApi.Controllers
             return Ok(updatedMarcaViewModel);
         }
 
+        [HttpPut("deactivate/{id}")]
+        public async Task<IActionResult> DeactivateMarca(int id)
+        {
+            var result = await _marcaService.DeactivateMarca(id);
+            if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpPut("activate/{id}")]
+        public async Task<IActionResult> ActivateMarca(int id)
+        {
+            var result = await _marcaService.ActivateMarca(id);
+            if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }
 
