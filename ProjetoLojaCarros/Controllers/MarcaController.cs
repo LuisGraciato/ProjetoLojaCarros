@@ -23,8 +23,8 @@ namespace LojaCarrosApi.Controllers
         public async Task<IActionResult> GetAllMarcas()
         {
             var marcas = await _marcaService.GetAllMarcas();
-            var marcaViewModels = _mapper.Map<IEnumerable<MarcaViewModel>>(marcas);
-            return Ok(marcaViewModels);
+            var marcaCompletaViewModels = _mapper.Map<IEnumerable<MarcaCompletaViewModel>>(marcas);
+            return Ok(marcaCompletaViewModels);
         }
 
         [HttpGet("{id}")]

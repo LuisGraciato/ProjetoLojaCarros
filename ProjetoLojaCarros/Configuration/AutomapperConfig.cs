@@ -9,6 +9,10 @@ namespace DevIOApi.Configuration
         public AutomapperConfig()
         {
             CreateMap<Marca, MarcaViewModel>().ReverseMap();
+            CreateMap<Marca, MarcaCompletaViewModel>().ReverseMap();
+            CreateMap<Modelo, ModeloViewModel>().ReverseMap();
+            CreateMap<Modelo, ModeloCompletoViewModel>().ReverseMap();
         }
+
     }
 }

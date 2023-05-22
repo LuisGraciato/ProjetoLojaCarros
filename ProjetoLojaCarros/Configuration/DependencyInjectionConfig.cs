@@ -11,8 +11,12 @@ namespace DevIOApi.Configuration
         {
             services.AddScoped<MyDbContext>();
             services.AddScoped<IMarcaRepository, MarcaRepository>();
+            services.AddScoped<IModeloRepository, ModeloRepository>();
+
 
             services.AddScoped<IMarcaService, MarcaService>();
+            services.AddScoped<IModeloService, ModeloService>();
+
 
             return services;
         }

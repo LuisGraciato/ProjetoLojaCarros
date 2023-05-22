@@ -7,24 +7,27 @@ namespace DevIoBusiness.Models
     {
         [Key]
         public int IdModelo { get; private set; }
-        public string Nome { get; private set; }
-        public string TipoCombustivel { get; private set; }  
-        public string TipoMotor { get; private set; }
-        public int NumeroPortas { get; private set; }
-        public int NumeroLugares { get; private set; }
-        public int AnoFabricacao { get; private set; }
-        public int AnoModelo { get; private set; }
-        public bool Ativo { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public string Nome { get; set; }
+        public string TipoCombustivel { get; set; }  
+        public string TipoMotor { get;  set; }
+        public int NumeroPortas { get; set; }
+        public int NumeroLugares { get; set; }
+        public int AnoFabricacao { get; set; }
+        public int AnoModelo { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataAlteracao { get; set; }
 
 
         [ForeignKey("IdMarca")]
         public int IdMarca { get; private set; }
-        public Marca Marca { get; private set; }
+        public Marca Marca { get; set; }
 
         public ICollection<Carro> Carros{ get; set; }
 
+        public Modelo()
+        {
 
+        }
         public Modelo(string nome, string tipoCombustivel, string tipoMotor, int numeroPortas, int numeroLugares, int anoFabricacao, int anoModelo, bool ativo)
         {
             Nome = nome;
