@@ -18,7 +18,7 @@ namespace DevIoBusiness.Models
         public DateTime DataAlteracao { get; set; }
 
 
-        [ForeignKey("IdMarca")]
+        [ForeignKey("Marca")]
         public int IdMarca { get; private set; }
         public Marca Marca { get; set; }
 
@@ -28,19 +28,7 @@ namespace DevIoBusiness.Models
         {
 
         }
-        public Modelo(string nome, string tipoCombustivel, string tipoMotor, int numeroPortas, int numeroLugares, int anoFabricacao, int anoModelo, bool ativo)
-        {
-            Nome = nome;
-            TipoCombustivel = tipoCombustivel;
-            TipoMotor = tipoMotor;
-            NumeroPortas = numeroPortas;
-            NumeroLugares = numeroLugares;
-            AnoFabricacao = anoFabricacao;
-            AnoModelo = anoModelo;
-            Ativo = ativo;
-
-
-        }
+      
     }
 }
 

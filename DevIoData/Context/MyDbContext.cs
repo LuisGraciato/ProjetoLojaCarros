@@ -29,11 +29,19 @@ namespace DevIoData.Context
                 .HasForeignKey(m => m.IdMarca)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Carro>()
-                .HasMany(c => c.CarroAdicionais)
-                .WithOne(m => m.Carro)
-                .HasForeignKey(c => c.IdCarro)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<CarroCarroAdicionais>()
+                .HasKey(cc => new { cc.IdCarro, cc.IdAdicionais });
+
+            modelBuilder.Entity<CarroCarroAdicionais>()
+                .HasOne(cc => cc.Carro)
+                .WithMany(c=> c.CarroAdicionais)
+                .HasForeignKey(cc => cc.IdCarro);
+
+            modelBuilder.Entity<CarroCarroAdicionais>()
+                .HasOne(cc => cc.CarroAdicionais)
+                .WithMany()
+                .HasForeignKey(cc => cc.IdAdicionais);
+
 
         }
     }

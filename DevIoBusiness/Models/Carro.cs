@@ -8,30 +8,24 @@ namespace DevIoBusiness.Models
     {
         [Key]
         public int IdCarro { get; private set; }
-        public string Placa { get; private set; }
-        public int Quilometragem { get; private set; }
-        public string Cor { get; private set; }
-        public double Preco { get; private set; }
-        public string EstadoConservacao { get; private set; }
-        public bool Ativo { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public string Placa { get; set; }
+        public int Quilometragem { get; set; }
+        public string Cor { get; set; }
+        public double Preco { get; set; }
+        public string EstadoConservacao { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataAlteracao { get; set; }
 
 
         [ForeignKey("Modelo")]
         public int IdModelo { get; private set; }
-        public Modelo Modelo { get; private set; }
+        public Modelo Modelo { get; set; }
 
-        public ICollection<CarroAdicionais> CarroAdicionais { get; set; }
+        public List<CarroCarroAdicionais> CarroAdicionais { get; set; }
 
-
-        public Carro(string placa, int quilometragem, string cor, double preco, string estadoConservacao, bool ativo)
+        public Carro()
         {
-            Placa = placa;
-            Quilometragem = quilometragem;
-            Cor = cor;
-            Preco = preco;
-            EstadoConservacao = estadoConservacao;
-            Ativo = ativo;
+
         }
     }
 }

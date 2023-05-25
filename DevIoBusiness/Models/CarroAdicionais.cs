@@ -7,23 +7,20 @@ namespace DevIoBusiness.Models
     {
         [Key]
         public int IdAdicionais { get; private set; }
-        public string Nome { get; private set; }
-        public string Descricao { get; private set; }
-        public double Preco { get; private set; }
-        public bool Ativo { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public double Preco { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataAlteracao { get; set; }
 
 
-        [ForeignKey("Carro")]
-        public int IdCarro { get; private set; }
-        public Carro Carro { get; private set; }
 
-        public CarroAdicionais(string nome, string descricao, double preco, bool ativo)
+        public List<CarroCarroAdicionais> Carros { get; set; }
+
+
+        public CarroAdicionais()
         {
-            Nome = nome;
-            Descricao = descricao;
-            Preco = preco;
-            Ativo = ativo;
+
         }
     }
 }

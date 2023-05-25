@@ -16,11 +16,6 @@ namespace DevIoBusiness.Models
         {
         }
 
-        public Marca(string nome, bool ativo)
-        {
-            Nome = nome;
-            Ativo = ativo;
-        }
     }
 
 }

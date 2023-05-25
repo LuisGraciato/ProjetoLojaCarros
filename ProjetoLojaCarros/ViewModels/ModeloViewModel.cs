@@ -27,7 +27,7 @@ namespace LojaCarrosApi.ViewModels
 
         [Required(ErrorMessage = "O campo ano do modelo é obrigatório.")]
         public int AnoModelo { get; set; }
-        public int IdMarca { get; private set; }
+        public int IdMarca { get; set; }
     }
 
 }

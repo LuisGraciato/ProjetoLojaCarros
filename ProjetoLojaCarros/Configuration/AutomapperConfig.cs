@@ -12,6 +12,10 @@ namespace DevIOApi.Configuration
             CreateMap<Marca, MarcaCompletaViewModel>().ReverseMap();
             CreateMap<Modelo, ModeloViewModel>().ReverseMap();
             CreateMap<Modelo, ModeloCompletoViewModel>().ReverseMap();
+            CreateMap<Carro, CarroViewModel>().ReverseMap();
+            CreateMap<Carro, CarroCompletoViewModel>().ReverseMap();
+            CreateMap<CarroAdicionais, CarroAdicionaisViewModel>().ReverseMap();
+            CreateMap<CarroAdicionais, CarroAdicionaisCompletoViewModel>().ReverseMap();
         }
 
     }
