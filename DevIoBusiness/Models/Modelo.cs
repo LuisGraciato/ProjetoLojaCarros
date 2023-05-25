@@ -19,7 +19,7 @@ namespace DevIoBusiness.Models
 
 
         [ForeignKey("Marca")]
-        public int IdMarca { get; private set; }
+        public int IdMarca { get; set; }
         public Marca Marca { get; set; }
 
         public ICollection<Carro> Carros{ get; set; }

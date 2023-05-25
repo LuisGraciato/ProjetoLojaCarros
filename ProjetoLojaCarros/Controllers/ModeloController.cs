@@ -65,6 +65,13 @@ namespace LojaCarrosApi.Controllers
                 return NotFound();
 
             modelo.Nome = modeloViewModel.Nome;
+            modelo.TipoCombustivel = modeloViewModel.TipoCombustivel;
+            modelo.TipoMotor = modeloViewModel.TipoMotor;
+            modelo.NumeroPortas = modeloViewModel.NumeroPortas;
+            modelo.NumeroLugares = modeloViewModel.NumeroLugares;
+            modelo.AnoFabricacao = modeloViewModel.AnoFabricacao;
+            modelo.AnoModelo = modeloViewModel.AnoModelo;
+            modelo.IdMarca = modeloViewModel.IdMarca;
             modelo.DataAlteracao = DateTime.Now;
 
             var updatedModelo = await _modeloService.UpdateModelo(modelo);

@@ -67,6 +67,7 @@ namespace LojaCarrosApi.Controllers
             marca.Nome = marcaViewModel.Nome;
             marca.DataAlteracao = DateTime.Now;
 
+
             var updatedMarca = await _marcaService.UpdateMarca(marca);
             var updatedMarcaViewModel = _mapper.Map<MarcaViewModel>(updatedMarca);
 

@@ -18,7 +18,7 @@ namespace DevIoBusiness.Models
 
 
         [ForeignKey("Modelo")]
-        public int IdModelo { get; private set; }
+        public int IdModelo { get; set; }
         public Modelo Modelo { get; set; }
 
         public List<CarroCarroAdicionais> CarroAdicionais { get; set; }

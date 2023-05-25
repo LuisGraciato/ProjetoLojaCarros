@@ -67,7 +67,12 @@ namespace LojaCarrosApi.Controllers
             if (carro == null)
                 return NotFound();
 
-            
+            carro.Placa= carroViewModel.Placa;
+            carro.Quilometragem = carroViewModel.Quilometragem;
+            carro.Cor = carroViewModel.Cor;
+            carro.Preco= carroViewModel.Preco;
+            carro.EstadoConservacao= carroViewModel.EstadoConservacao;
+            carro.IdModelo = carroViewModel.IdModelo;
             carro.DataAlteracao = DateTime.Now;
 
             var updatedCarro = await _carroService.UpdateCarro(carro);
