@@ -4,6 +4,7 @@ using DevIoData.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIoData.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530134244_PessoaAtt5")]
+    partial class PessoaAtt5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,43 +117,6 @@ namespace DevIoData.Migrations
                     b.ToTable("CarroCarroAdicionais");
                 });
 
-            modelBuilder.Entity("DevIoBusiness.Models.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdEndereco")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTelefone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEndereco");
-
-                    b.HasIndex("IdTelefone");
-
-                    b.ToTable("Clientes");
-                });
-
             modelBuilder.Entity("DevIoBusiness.Models.Endereco", b =>
                 {
                     b.Property<int>("IdEndereco")
@@ -181,10 +147,7 @@ namespace DevIoData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdCliente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdFuncionario")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Numero")
@@ -196,52 +159,9 @@ namespace DevIoData.Migrations
 
                     b.HasKey("IdEndereco");
 
-                    b.HasIndex("IdCliente");
-
-                    b.HasIndex("IdFuncionario");
+                    b.HasIndex("Id");
 
                     b.ToTable("Enderecos");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Funcionario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Cargo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdEndereco")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTelefone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEndereco");
-
-                    b.HasIndex("IdTelefone");
-
-                    b.ToTable("Funcionarios");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Marca", b =>
@@ -315,6 +235,41 @@ namespace DevIoData.Migrations
                     b.ToTable("Modelos");
                 });
 
+            modelBuilder.Entity("DevIoBusiness.Models.Pessoa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pessoa");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Pessoa");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("DevIoBusiness.Models.Telefone", b =>
                 {
                     b.Property<int>("IdTelefone")
@@ -337,10 +292,7 @@ namespace DevIoData.Migrations
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdCliente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdFuncionario")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Numero")
@@ -349,11 +301,27 @@ namespace DevIoData.Migrations
 
                     b.HasKey("IdTelefone");
 
-                    b.HasIndex("IdCliente");
-
-                    b.HasIndex("IdFuncionario");
+                    b.HasIndex("Id");
 
                     b.ToTable("Telefones");
+                });
+
+            modelBuilder.Entity("DevIoBusiness.Models.Cliente", b =>
+                {
+                    b.HasBaseType("DevIoBusiness.Models.Pessoa");
+
+                    b.HasDiscriminator().HasValue("Cliente");
+                });
+
+            modelBuilder.Entity("DevIoBusiness.Models.Funcionario", b =>
+                {
+                    b.HasBaseType("DevIoBusiness.Models.Pessoa");
+
+                    b.Property<string>("Cargo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Funcionario");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Carro", b =>
@@ -390,61 +358,15 @@ namespace DevIoData.Migrations
                     b.Navigation("CarroAdicionais");
                 });
 
-            modelBuilder.Entity("DevIoBusiness.Models.Cliente", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("IdEndereco")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Telefone", "Telefone")
-                        .WithMany()
-                        .HasForeignKey("IdTelefone")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Telefone");
-                });
-
             modelBuilder.Entity("DevIoBusiness.Models.Endereco", b =>
                 {
-                    b.HasOne("DevIoBusiness.Models.Cliente", "Cliente")
+                    b.HasOne("DevIoBusiness.Models.Pessoa", "Pessoa")
                         .WithMany("Enderecos")
-                        .HasForeignKey("IdCliente")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DevIoBusiness.Models.Funcionario", "Funcionario")
-                        .WithMany("Enderecos")
-                        .HasForeignKey("IdFuncionario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Funcionario");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Funcionario", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("IdEndereco")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Telefone", "Telefone")
-                        .WithMany()
-                        .HasForeignKey("IdTelefone")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Telefone");
+                    b.Navigation("Pessoa");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Modelo", b =>
@@ -460,21 +382,13 @@ namespace DevIoData.Migrations
 
             modelBuilder.Entity("DevIoBusiness.Models.Telefone", b =>
                 {
-                    b.HasOne("DevIoBusiness.Models.Cliente", "Cliente")
+                    b.HasOne("DevIoBusiness.Models.Pessoa", "Pessoa")
                         .WithMany("Telefones")
-                        .HasForeignKey("IdCliente")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DevIoBusiness.Models.Funcionario", "Funcionario")
-                        .WithMany("Telefones")
-                        .HasForeignKey("IdFuncionario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Funcionario");
+                    b.Navigation("Pessoa");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Carro", b =>
@@ -487,20 +401,6 @@ namespace DevIoData.Migrations
                     b.Navigation("Carros");
                 });
 
-            modelBuilder.Entity("DevIoBusiness.Models.Cliente", b =>
-                {
-                    b.Navigation("Enderecos");
-
-                    b.Navigation("Telefones");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Funcionario", b =>
-                {
-                    b.Navigation("Enderecos");
-
-                    b.Navigation("Telefones");
-                });
-
             modelBuilder.Entity("DevIoBusiness.Models.Marca", b =>
                 {
                     b.Navigation("Modelos");
@@ -509,6 +409,13 @@ namespace DevIoData.Migrations
             modelBuilder.Entity("DevIoBusiness.Models.Modelo", b =>
                 {
                     b.Navigation("Carros");
+                });
+
+            modelBuilder.Entity("DevIoBusiness.Models.Pessoa", b =>
+                {
+                    b.Navigation("Enderecos");
+
+                    b.Navigation("Telefones");
                 });
 #pragma warning restore 612, 618
         }
