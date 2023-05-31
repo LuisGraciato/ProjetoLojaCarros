@@ -68,8 +68,8 @@ namespace LojaCarrosApi.Controllers
                 return NotFound();
 
             carroAdicionais.Nome = carroAdicionaisViewModel.Nome;
-            carroAdicionais.Descricao = carroAdicionais.Descricao;
-            carroAdicionais.Preco = carroAdicionais.Preco;
+            carroAdicionais.Descricao = carroAdicionaisViewModel.Descricao;
+            carroAdicionais.Preco = carroAdicionaisViewModel.Preco;           // Falta Setar a chave estrangeira Id do Carro, Rever depois
             carroAdicionais.DataAlteracao = DateTime.Now;
 
             var updatedCarroAdicionais = await _carroAdicionaisService.UpdateCarroAdicionais(carroAdicionais);

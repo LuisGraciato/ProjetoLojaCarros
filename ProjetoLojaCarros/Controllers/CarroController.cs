@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using DevIOApi.ViewModels;
 using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
 using LojaCarrosApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace LojaCarrosApi.Controllers
 {
@@ -68,11 +64,11 @@ namespace LojaCarrosApi.Controllers
             if (carro == null)
                 return NotFound();
 
-            carro.Placa= carroViewModel.Placa;
+            carro.Placa = carroViewModel.Placa;
             carro.Quilometragem = carroViewModel.Quilometragem;
             carro.Cor = carroViewModel.Cor;
-            carro.Preco= carroViewModel.Preco;
-            carro.EstadoConservacao= carroViewModel.EstadoConservacao;
+            carro.Preco = carroViewModel.Preco;
+            carro.EstadoConservacao = carroViewModel.EstadoConservacao;
             carro.IdModelo = carroViewModel.IdModelo;
             carro.DataAlteracao = DateTime.Now;
 
