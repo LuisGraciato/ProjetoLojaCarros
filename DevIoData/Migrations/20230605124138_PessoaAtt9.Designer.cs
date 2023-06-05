@@ -4,6 +4,7 @@ using DevIoData.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIoData.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230605124138_PessoaAtt9")]
+    partial class PessoaAtt9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,9 +329,6 @@ namespace DevIoData.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DDD")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -340,7 +340,10 @@ namespace DevIoData.Migrations
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FuncionarioId")
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdFuncionario")
                         .HasColumnType("int");
 
                     b.Property<string>("Numero")
@@ -349,9 +352,9 @@ namespace DevIoData.Migrations
 
                     b.HasKey("IdTelefone");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("IdCliente");
 
-                    b.HasIndex("FuncionarioId");
+                    b.HasIndex("IdFuncionario");
 
                     b.ToTable("Telefones");
                 });
@@ -452,13 +455,21 @@ namespace DevIoData.Migrations
 
             modelBuilder.Entity("DevIoBusiness.Models.Telefone", b =>
                 {
-                    b.HasOne("DevIoBusiness.Models.Cliente", null)
+                    b.HasOne("DevIoBusiness.Models.Cliente", "Cliente")
                         .WithMany("Telefones")
-                        .HasForeignKey("ClienteId");
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DevIoBusiness.Models.Funcionario", null)
+                    b.HasOne("DevIoBusiness.Models.Funcionario", "Funcionario")
                         .WithMany("Telefones")
-                        .HasForeignKey("FuncionarioId");
+                        .HasForeignKey("IdFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Carro", b =>

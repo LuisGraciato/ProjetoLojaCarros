@@ -23,7 +23,6 @@ namespace DevIOApi.ViewModels
 
         [Required(ErrorMessage = "O campo Complemento é obrigatório.")]
         public string Complemento { get; set; }
-        public int IdCliente { get; set; }
-        public int IdFuncionario { get; set; }
+        
     }
 }

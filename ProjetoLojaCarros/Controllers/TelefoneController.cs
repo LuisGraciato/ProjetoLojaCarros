@@ -68,8 +68,6 @@ namespace LojaCarrosApi.Controllers
             telefone.Numero = telefoneViewModel.Numero;
             telefone.DDD = telefoneViewModel.DDD;
             telefone.DDI = telefoneViewModel.DDI;
-            telefone.IdCliente = telefoneViewModel.IdCliente;
-            telefone.IdFuncionario= telefoneViewModel.IdFuncionario;
             telefone.DataAlteracao = DateTime.Now;
 
             var updatedTelefone = await _telefoneService.UpdateTelefone(telefone);

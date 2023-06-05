@@ -16,15 +16,6 @@ namespace DevIoBusiness.Models
         public bool Ativo { get; set; }
         public DateTime DataAlteracao { get; set; }
 
-
-        [ForeignKey("Cliente")]
-        public int IdCliente { get; set; }
-        public Cliente Cliente { get; set; }
-
-        [ForeignKey("Funcionario")]
-        public int IdFuncionario { get; set; }
-        public Funcionario Funcionario{ get; set; }
-
         public Endereco()
         {
 

@@ -15,7 +15,5 @@ namespace DevIOApi.ViewModels
         [Required(ErrorMessage = "O campo DDI é obrigatório.")]
         public string DDI { get; set; }
 
-        public int IdCliente { get; set; }
-        public int IdFuncionario { get; set; }
     }
 }

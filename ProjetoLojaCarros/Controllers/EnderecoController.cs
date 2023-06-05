@@ -71,8 +71,6 @@ namespace LojaCarrosApi.Controllers
             endereco.Numero = enderecoViewModel.Numero;
             endereco.Estado= enderecoViewModel.Estado;
             endereco.Complemento = enderecoViewModel.Complemento;
-            endereco.IdCliente = enderecoViewModel.IdCliente;
-            endereco.IdFuncionario = enderecoViewModel.IdFuncionario;
             endereco.DataAlteracao = DateTime.Now;
 
             var updatedEndereco = await _enderecoService.UpdateEndereco(endereco);
