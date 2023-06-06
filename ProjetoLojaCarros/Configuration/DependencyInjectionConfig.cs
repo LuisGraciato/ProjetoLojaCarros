@@ -15,7 +15,7 @@ namespace DevIOApi.Configuration
             services.AddScoped<IMarcaRepository, MarcaRepository>();
             services.AddScoped<IModeloRepository, ModeloRepository>();
             services.AddScoped<ICarroRepository, CarroRepository>();
-            services.AddScoped<ICarroAdicionaisRepository, CarroAdicionaisRepository>();
+            services.AddScoped<IAdicionaisRepository, AdicionaisRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<ITelefoneRepository, TelefoneRepository>();
@@ -24,7 +24,7 @@ namespace DevIOApi.Configuration
             services.AddScoped<IMarcaService, MarcaService>();
             services.AddScoped<IModeloService, ModeloService>();
             services.AddScoped<ICarroService, CarroService>();
-            services.AddScoped<ICarroAdicionaisService, CarroAdicionaisService>();
+            services.AddScoped<IAdicionaisService, AdicionaisService>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IEnderecoService, EnderecoService>();
             services.AddScoped<ITelefoneService, TelefoneService>();

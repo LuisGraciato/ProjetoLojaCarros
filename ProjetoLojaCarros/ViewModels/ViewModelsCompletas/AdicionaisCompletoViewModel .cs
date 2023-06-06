@@ -1,7 +1,7 @@
 ﻿namespace LojaCarrosApi.ViewModels
 {
     // MarcaDTO
-    public class CarroAdicionaisCompletoViewModel :CarroAdicionaisViewModel
+    public class AdicionaisCompletoViewModel :AdicionaisViewModel
     {
         public bool Ativo { get; set; }
         public DateTime DataAlteracao { get; set; }

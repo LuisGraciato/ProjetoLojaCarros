@@ -3,7 +3,7 @@
 namespace LojaCarrosApi.ViewModels
 {
     // CarroAdicionaisDTO
-    public class CarroAdicionaisViewModel
+    public class AdicionaisViewModel
     {
         public int IdAdicionais { get; private set; }
 

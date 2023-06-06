@@ -10,7 +10,7 @@ namespace DevIoData.Context
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Carro> Carros { get; set; }
-        public DbSet<CarroAdicionais> CarroAdicionais { get; set; }
+        public DbSet<Adicionais> Adicionais { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
@@ -30,16 +30,16 @@ namespace DevIoData.Context
                 .HasForeignKey(m => m.IdMarca)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CarroCarroAdicionais>()
+            modelBuilder.Entity<CarroAdicionais>()
                 .HasKey(cc => new { cc.IdCarro, cc.IdAdicionais });
 
-            modelBuilder.Entity<CarroCarroAdicionais>()
+            modelBuilder.Entity<CarroAdicionais>()
                 .HasOne(cc => cc.Carro)
-                .WithMany(c => c.CarroAdicionais)
+                .WithMany(c => c.Adicionais)
                 .HasForeignKey(cc => cc.IdCarro);
 
-            modelBuilder.Entity<CarroCarroAdicionais>()
-                .HasOne(cc => cc.CarroAdicionais)
+            modelBuilder.Entity<CarroAdicionais>()
+                .HasOne(cc => cc.Adicionais)
                 .WithMany()
                 .HasForeignKey(cc => cc.IdAdicionais);
 
