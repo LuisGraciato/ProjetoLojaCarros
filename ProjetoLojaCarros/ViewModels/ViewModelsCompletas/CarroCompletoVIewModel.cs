@@ -1,10 +1,11 @@
-﻿namespace LojaCarrosApi.ViewModels
+﻿using DevIOApi.ViewModels;
+
+namespace LojaCarrosApi.ViewModels
 {
     // MarcaDTO
-    public class CarroCompletoViewModel : CarroViewModel
+    public class NotaFiscalCompletaViewModel : NotaFiscalViewModel
     {
-        public bool Ativo { get; set; }
-        public DateTime DataAlteracao { get; set; }
+        public DateTime DataEmissao { get; set; }
     }
 
 }

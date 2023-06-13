@@ -26,6 +26,9 @@ namespace DevIOApi.Configuration
             CreateMap<Endereco, EnderecoCompletoViewModel>().ReverseMap();
             CreateMap<Telefone, TelefoneViewModel>().ReverseMap();
             CreateMap<Telefone, TelefoneCompletoViewModel>().ReverseMap();
+            CreateMap<NotaFiscal, NotaFiscalViewModel>().ReverseMap();
+            CreateMap<NotaFiscal, NotaFiscalCompletaViewModel>().ReverseMap();
+            CreateMap<FormaPagamento, FormaPagamentoViewModel>().ReverseMap();
 
         }
 

@@ -4,6 +4,7 @@ using DevIoData.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIoData.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230612124436_PessoaAtt12")]
+    partial class PessoaAtt12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,30 +339,6 @@ namespace DevIoData.Migrations
                     b.ToTable("Modelos");
                 });
 
-            modelBuilder.Entity("DevIoBusiness.Models.NotaFiscal", b =>
-                {
-                    b.Property<int>("IdNotaFiscal")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNotaFiscal"));
-
-                    b.Property<DateTime>("DataEmissao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdVenda")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumeroNota")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdNotaFiscal");
-
-                    b.HasIndex("IdVenda");
-
-                    b.ToTable("NotasFiscais");
-                });
-
             modelBuilder.Entity("DevIoBusiness.Models.Telefone", b =>
                 {
                     b.Property<int>("IdTelefone")
@@ -399,89 +378,6 @@ namespace DevIoData.Migrations
                     b.HasIndex("FuncionarioId");
 
                     b.ToTable("Telefones");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Venda", b =>
-                {
-                    b.Property<int>("IdVenda")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVenda"));
-
-                    b.Property<int>("IdCarro")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdCliente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdFuncionario")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ValorTotal")
-                        .HasColumnType("float");
-
-                    b.HasKey("IdVenda");
-
-                    b.HasIndex("IdCarro");
-
-                    b.HasIndex("IdCliente");
-
-                    b.HasIndex("IdFuncionario");
-
-                    b.ToTable("Vendas");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.VendaCarro", b =>
-                {
-                    b.Property<int>("IdVendaCarro")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVendaCarro"));
-
-                    b.Property<int>("IdCarro")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdVenda")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
-
-                    b.HasKey("IdVendaCarro");
-
-                    b.HasIndex("IdCarro");
-
-                    b.HasIndex("IdVenda");
-
-                    b.ToTable("VendaCarros");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.VendaFormaPagamento", b =>
-                {
-                    b.Property<int>("IdVendaFormaPagamento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVendaFormaPagamento"));
-
-                    b.Property<int>("IdFormaPagamento")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdVenda")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
-
-                    b.HasKey("IdVendaFormaPagamento");
-
-                    b.HasIndex("IdFormaPagamento");
-
-                    b.HasIndex("IdVenda");
-
-                    b.ToTable("VendaFormasPagamento");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Carro", b =>
@@ -578,17 +474,6 @@ namespace DevIoData.Migrations
                     b.Navigation("Marca");
                 });
 
-            modelBuilder.Entity("DevIoBusiness.Models.NotaFiscal", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.Venda", "Venda")
-                        .WithMany("NotasFiscais")
-                        .HasForeignKey("IdVenda")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Venda");
-                });
-
             modelBuilder.Entity("DevIoBusiness.Models.Telefone", b =>
                 {
                     b.HasOne("DevIoBusiness.Models.Cliente", null)
@@ -598,71 +483,6 @@ namespace DevIoData.Migrations
                     b.HasOne("DevIoBusiness.Models.Funcionario", null)
                         .WithMany("Telefones")
                         .HasForeignKey("FuncionarioId");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Venda", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.Carro", "Carro")
-                        .WithMany()
-                        .HasForeignKey("IdCarro")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Funcionario", "Funcionario")
-                        .WithMany()
-                        .HasForeignKey("IdFuncionario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Carro");
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Funcionario");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.VendaCarro", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.Carro", "Carro")
-                        .WithMany()
-                        .HasForeignKey("IdCarro")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Venda", "Venda")
-                        .WithMany("VendaCarros")
-                        .HasForeignKey("IdVenda")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Carro");
-
-                    b.Navigation("Venda");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.VendaFormaPagamento", b =>
-                {
-                    b.HasOne("DevIoBusiness.Models.FormaPagamento", "FormaPagamento")
-                        .WithMany()
-                        .HasForeignKey("IdFormaPagamento")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DevIoBusiness.Models.Venda", "Venda")
-                        .WithMany("VendaFormasPagamento")
-                        .HasForeignKey("IdVenda")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FormaPagamento");
-
-                    b.Navigation("Venda");
                 });
 
             modelBuilder.Entity("DevIoBusiness.Models.Adicionais", b =>
@@ -697,15 +517,6 @@ namespace DevIoData.Migrations
             modelBuilder.Entity("DevIoBusiness.Models.Modelo", b =>
                 {
                     b.Navigation("Carros");
-                });
-
-            modelBuilder.Entity("DevIoBusiness.Models.Venda", b =>
-                {
-                    b.Navigation("NotasFiscais");
-
-                    b.Navigation("VendaCarros");
-
-                    b.Navigation("VendaFormasPagamento");
                 });
 #pragma warning restore 612, 618
         }

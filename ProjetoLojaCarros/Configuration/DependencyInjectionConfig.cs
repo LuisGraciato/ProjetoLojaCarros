@@ -20,6 +20,8 @@ namespace DevIOApi.Configuration
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<ITelefoneRepository, TelefoneRepository>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<INotaFiscalRepository, NotaFiscalRepository>();
+            services.AddScoped<IFormaPagamentoRepository, FormaPagamentoRepository>();
 
             services.AddScoped<IMarcaService, MarcaService>();
             services.AddScoped<IModeloService, ModeloService>();
@@ -29,8 +31,11 @@ namespace DevIOApi.Configuration
             services.AddScoped<IEnderecoService, EnderecoService>();
             services.AddScoped<ITelefoneService, TelefoneService>();
             services.AddScoped<IFuncionarioService, FuncionarioService>();
+            services.AddScoped<INotaFiscalService, NotaFiscalService>();
+            services.AddScoped<IFormaPagamentoService, FormaPagamentoService>();
 
             return services;
         }
+
     }
 }

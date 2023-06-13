@@ -15,6 +15,12 @@ namespace DevIoData.Context
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<FormaPagamento> FormasPagamento { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
+        public DbSet<VendaFormaPagamento> VendaFormasPagamento { get; set; }
+        public DbSet<VendaCarro> VendaCarros { get; set; }
+        public DbSet<NotaFiscal> NotasFiscais { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -73,10 +79,55 @@ namespace DevIoData.Context
                 .HasForeignKey(f => f.IdTelefone)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Venda>()
+                .HasKey(t => t.IdVenda);
+
+            modelBuilder.Entity<VendaCarro>()
+                .HasKey(t => t.IdVendaCarro);
+
+            modelBuilder.Entity<VendaFormaPagamento>()
+                .HasKey(t => t.IdVendaFormaPagamento);
+
+            modelBuilder.Entity<FormaPagamento>()
+                .HasKey(t => t.IdFormaPagamento);
+
+            modelBuilder.Entity<Venda>()
+                .HasMany(v => v.VendaFormasPagamento)
+                .WithOne(vp => vp.Venda)
+                .HasForeignKey(vp => vp.IdVenda)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Venda>()
+                .HasMany(vc => vc.VendaCarros)
+                .WithOne(v => v.Venda)
+                .HasForeignKey(vc => vc.IdVenda)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VendaFormaPagamento>()
+                .HasOne(vp => vp.FormaPagamento)
+                .WithMany()
+                .HasForeignKey(vp => vp.IdFormaPagamento)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VendaCarro>()
+                .HasOne(vc => vc.Carro)
+                .WithMany()
+                .HasForeignKey(vc => vc.IdCarro)
+                .OnDelete(DeleteBehavior.Restrict);
+           
+            modelBuilder.Entity<NotaFiscal>()
+                .HasKey(nf => nf.IdNotaFiscal);
+
+            modelBuilder.Entity<NotaFiscal>()
+                .HasOne(nf => nf.Venda)
+                .WithMany(v => v.NotasFiscais)
+                .HasForeignKey(nf => nf.IdVenda)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
         }
     }
+
 }
 
 
