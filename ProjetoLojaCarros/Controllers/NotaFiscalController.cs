@@ -39,7 +39,7 @@ namespace DevIOApi.Controllers
             return Ok(notaFiscalViewModel);
         }
 
-        [HttpGet("venda/{IdVenda}")]
+        [HttpGet("venda/{idVenda}")]
         public async Task<IActionResult> GetNotasFiscaisByVendaId(int idVenda)
         {
             var notasFiscais = await _notaFiscalService.GetNotasFiscaisByVendaId(idVenda);

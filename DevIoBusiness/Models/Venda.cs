@@ -17,12 +17,9 @@ namespace DevIoBusiness.Models
         public int IdCliente { get; set; }
         public Cliente Cliente { get; set; }
 
-        [ForeignKey("Carro")]
-        public int IdCarro { get; set; }
-        public Carro Carro { get; set; }
-
         public ICollection<VendaFormaPagamento> VendaFormasPagamento { get; set; }
-        public ICollection<VendaCarro> VendaCarros { get; set; }
+        public ICollection<VendaCarro> CarrosVendidos { get; set; }
         public ICollection<NotaFiscal> NotasFiscais { get; set; }
+
     }
 }

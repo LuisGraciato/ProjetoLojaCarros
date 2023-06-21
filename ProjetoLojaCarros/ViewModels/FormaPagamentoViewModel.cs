@@ -11,5 +11,9 @@ namespace DevIOApi.ViewModels
 
         [Required(ErrorMessage = "O campo descrição é obrigatório.")]
         public string Descricao { get; set; }
+
+
     }
+
 }
+

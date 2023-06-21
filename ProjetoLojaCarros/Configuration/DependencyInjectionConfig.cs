@@ -22,6 +22,7 @@ namespace DevIOApi.Configuration
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<INotaFiscalRepository, NotaFiscalRepository>();
             services.AddScoped<IFormaPagamentoRepository, FormaPagamentoRepository>();
+            services.AddScoped<IVendaRepository, VendaRepository>();
 
             services.AddScoped<IMarcaService, MarcaService>();
             services.AddScoped<IModeloService, ModeloService>();
@@ -33,6 +34,7 @@ namespace DevIOApi.Configuration
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<INotaFiscalService, NotaFiscalService>();
             services.AddScoped<IFormaPagamentoService, FormaPagamentoService>();
+            services.AddScoped<IVendaService, VendaService>();
 
             return services;
         }

@@ -22,6 +22,7 @@ namespace DevIoBusiness.Models
         public Modelo Modelo { get; set; }
 
         public List<CarroAdicionais> Adicionais { get; set; }
+        public ICollection<VendaCarro> VendaCarros { get; set; }
 
         public Carro()
         {

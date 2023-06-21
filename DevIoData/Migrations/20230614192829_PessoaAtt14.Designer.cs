@@ -4,6 +4,7 @@ using DevIoData.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIoData.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230614192829_PessoaAtt14")]
+    partial class PessoaAtt14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -409,6 +412,9 @@ namespace DevIoData.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVenda"));
 
+                    b.Property<int>("IdCarro")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdCliente")
                         .HasColumnType("int");
 
@@ -419,6 +425,8 @@ namespace DevIoData.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("IdVenda");
+
+                    b.HasIndex("IdCarro");
 
                     b.HasIndex("IdCliente");
 
@@ -597,6 +605,12 @@ namespace DevIoData.Migrations
 
             modelBuilder.Entity("DevIoBusiness.Models.Venda", b =>
                 {
+                    b.HasOne("DevIoBusiness.Models.Carro", "Carro")
+                        .WithMany()
+                        .HasForeignKey("IdCarro")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DevIoBusiness.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("IdCliente")
@@ -608,6 +622,8 @@ namespace DevIoData.Migrations
                         .HasForeignKey("IdFuncionario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Carro");
 
                     b.Navigation("Cliente");
 
@@ -623,7 +639,7 @@ namespace DevIoData.Migrations
                         .IsRequired();
 
                     b.HasOne("DevIoBusiness.Models.Venda", "Venda")
-                        .WithMany("CarrosVendidos")
+                        .WithMany("VendaCarros")
                         .HasForeignKey("IdVenda")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -695,9 +711,9 @@ namespace DevIoData.Migrations
 
             modelBuilder.Entity("DevIoBusiness.Models.Venda", b =>
                 {
-                    b.Navigation("CarrosVendidos");
-
                     b.Navigation("NotasFiscais");
+
+                    b.Navigation("VendaCarros");
 
                     b.Navigation("VendaFormasPagamento");
                 });

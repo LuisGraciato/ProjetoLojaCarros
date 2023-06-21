@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DevIoBusiness.Models
 {
@@ -13,6 +8,8 @@ namespace DevIoBusiness.Models
         public int IdFormaPagamento { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+
+        public ICollection<VendaFormaPagamento> VendaFormasPagamento { get; set; }
     }
 
 }

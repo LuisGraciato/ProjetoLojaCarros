@@ -29,7 +29,9 @@ namespace DevIOApi.Configuration
             CreateMap<NotaFiscal, NotaFiscalViewModel>().ReverseMap();
             CreateMap<NotaFiscal, NotaFiscalCompletaViewModel>().ReverseMap();
             CreateMap<FormaPagamento, FormaPagamentoViewModel>().ReverseMap();
-
+            CreateMap<Venda, VendaViewModel>().ReverseMap();
+            CreateMap<CarroVendaViewModel, VendaCarro>().ReverseMap();
+            
         }
 
     }

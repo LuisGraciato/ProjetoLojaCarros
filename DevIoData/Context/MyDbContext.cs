@@ -98,20 +98,20 @@ namespace DevIoData.Context
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Venda>()
-                .HasMany(vc => vc.VendaCarros)
+                .HasMany(vc => vc.CarrosVendidos)
                 .WithOne(v => v.Venda)
                 .HasForeignKey(vc => vc.IdVenda)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<VendaFormaPagamento>()
                 .HasOne(vp => vp.FormaPagamento)
-                .WithMany()
+                .WithMany(fp => fp.VendaFormasPagamento)
                 .HasForeignKey(vp => vp.IdFormaPagamento)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<VendaCarro>()
                 .HasOne(vc => vc.Carro)
-                .WithMany()
+                .WithMany(c => c.VendaCarros)
                 .HasForeignKey(vc => vc.IdCarro)
                 .OnDelete(DeleteBehavior.Restrict);
            
