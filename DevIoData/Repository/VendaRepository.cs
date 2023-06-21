@@ -16,8 +16,22 @@ namespace DevIoData.Repository
 
         public async Task<IEnumerable<Venda>> GetAllVendas()
         {
-            return await _dbContext.Vendas.ToListAsync();
+            var vendas = await _dbContext.Vendas.Include(v => v.CarrosVendidos).ToListAsync();
+
+            foreach (var venda in vendas)
+            {
+                venda.CarrosVendidos = venda.CarrosVendidos.Select(cv => new VendaCarro
+                {
+                    IdCarro = cv.IdCarro,
+                    Valor = cv.Valor
+                }).ToList();
+            }
+
+            return vendas;
         }
+
+
+
 
         public async Task<Venda> GetVendaById(int id)
         {
@@ -27,6 +41,10 @@ namespace DevIoData.Repository
         public async Task AddVenda(Venda venda)
         {
             _dbContext.Vendas.Add(venda);
+
+            await _dbContext.SaveChangesAsync();
+
+            var novosCarrosVendidos = new List<VendaCarro>(); 
 
             foreach (var CarroVenda in venda.CarrosVendidos)
             {
@@ -44,16 +62,17 @@ namespace DevIoData.Repository
                         IdVenda = venda.IdVenda,
                         IdCarro = CarroVenda.IdCarro,
                         Valor = CarroVenda.Valor
-                     nm
                     };
 
-                    _dbContext.VendaCarros.Add(vendaCarro);
+                    novosCarrosVendidos.Add(vendaCarro); 
                 }
             }
 
+            venda.CarrosVendidos = novosCarrosVendidos;
+
             await _dbContext.SaveChangesAsync();
-           
         }
+
 
 
         public async Task UpdateVenda(Venda venda)

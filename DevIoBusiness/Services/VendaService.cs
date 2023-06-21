@@ -34,16 +34,16 @@ namespace DevIoBusiness.Services
         {
             await _vendaRepository.AddVenda(venda);
 
-            //Random random = new Random();
-            //int numeroNota = random.Next(10000, 99999);
-            //var notaFiscal = new NotaFiscal
-            //{
-            //    NumeroNota = numeroNota,
-            //    DataEmissao = DateTime.Now,
-            //    IdVenda = venda.IdVenda
-            //};
+            Random random = new Random();
+            int numeroNota = random.Next(10000, 99999);
+            var notaFiscal = new NotaFiscal
+            {
+                NumeroNota = numeroNota,
+                DataEmissao = DateTime.Now,
+                IdVenda = venda.IdVenda
+            };
 
-            //await _notaFiscalService.AddNotaFiscal(notaFiscal);
+            await _notaFiscalService.AddNotaFiscal(notaFiscal);
         }
 
         public async Task UpdateVenda(Venda venda)

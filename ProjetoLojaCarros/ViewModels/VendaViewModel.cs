@@ -12,7 +12,7 @@ namespace DevIOApi.ViewModels
         [Required(ErrorMessage = "O campo Valor Total é obrigatório.")]
         public double ValorTotal { get; set; }
 
-        //public List<CarroVendaViewModel> CarrosVendidos { get; set; }
+        public List<CarroVendaViewModel> CarrosVendidos { get; set; }
 
     }
 
