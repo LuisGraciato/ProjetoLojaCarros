@@ -13,6 +13,7 @@ namespace DevIOApi.ViewModels
         public double ValorTotal { get; set; }
 
         public List<CarroVendaViewModel> CarrosVendidos { get; set; }
+        public List<VendaFormaPagamentoViewModel> VendaFormasPagamento { get; set; }
 
     }
 
@@ -21,5 +22,11 @@ namespace DevIOApi.ViewModels
         public int IdCarro { get; set; }
         public double Valor { get; set; }
         
+    }
+    public class VendaFormaPagamentoViewModel
+    {
+        public int IdFormaPagamento { get; set; }
+        public double Valor { get; set; }
+
     }
 }

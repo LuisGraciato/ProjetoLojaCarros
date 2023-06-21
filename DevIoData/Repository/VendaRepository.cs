@@ -16,7 +16,10 @@ namespace DevIoData.Repository
 
         public async Task<IEnumerable<Venda>> GetAllVendas()
         {
-            var vendas = await _dbContext.Vendas.Include(v => v.CarrosVendidos).ToListAsync();
+            var vendas = await _dbContext.Vendas
+                .Include(v => v.CarrosVendidos)
+                .Include(v => v.VendaFormasPagamento)
+                .ToListAsync();
 
             foreach (var venda in vendas)
             {
@@ -25,13 +28,15 @@ namespace DevIoData.Repository
                     IdCarro = cv.IdCarro,
                     Valor = cv.Valor
                 }).ToList();
+                venda.VendaFormasPagamento = venda.VendaFormasPagamento.Select(vf => new VendaFormaPagamento
+                {
+                    IdFormaPagamento = vf.IdFormaPagamento,
+                    Valor = vf.Valor
+                }).ToList();
             }
 
             return vendas;
         }
-
-
-
 
         public async Task<Venda> GetVendaById(int id)
         {
@@ -44,36 +49,38 @@ namespace DevIoData.Repository
 
             await _dbContext.SaveChangesAsync();
 
-            var novosCarrosVendidos = new List<VendaCarro>(); 
+            var novosCarrosVendidos = new List<VendaCarro>();
+            var formaPagamentoUsada = new List<VendaFormaPagamento>();
 
             foreach (var CarroVenda in venda.CarrosVendidos)
             {
-                var carro = await _dbContext.Carros.FindAsync(CarroVenda.IdCarro);
-
-                if (carro == null || !carro.Ativo)
+                 var vendaCarro = new VendaCarro
                 {
-                    throw new Exception("Carro já vendido ou fora de estoque para venda.");
-                }
-                else
-                {
-                    carro.Ativo = false;
-                    var vendaCarro = new VendaCarro
-                    {
-                        IdVenda = venda.IdVenda,
-                        IdCarro = CarroVenda.IdCarro,
-                        Valor = CarroVenda.Valor
-                    };
+                    IdVenda = venda.IdVenda,
+                    IdCarro = CarroVenda.IdCarro,
+                    Valor = CarroVenda.Valor
+                };
 
-                    novosCarrosVendidos.Add(vendaCarro); 
-                }
+                novosCarrosVendidos.Add(vendaCarro);
+
+            }
+            foreach (var VendaFormaPagamento in venda.VendaFormasPagamento)
+            {
+                var vendaFormaPagamento = new VendaFormaPagamento
+                {
+                    IdVenda = venda.IdVenda,
+                    IdFormaPagamento = VendaFormaPagamento.IdFormaPagamento,
+                    Valor = VendaFormaPagamento.Valor
+                };
+
+                formaPagamentoUsada.Add(vendaFormaPagamento);
             }
 
             venda.CarrosVendidos = novosCarrosVendidos;
+            venda.VendaFormasPagamento = formaPagamentoUsada;
 
             await _dbContext.SaveChangesAsync();
         }
-
-
 
         public async Task UpdateVenda(Venda venda)
         {

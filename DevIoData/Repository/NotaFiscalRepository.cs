@@ -57,6 +57,21 @@ namespace DevIoData.Repository
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task GerarNotaFiscalAposVenda(NotaFiscal notaFiscal)
+        {
+            notaFiscal.NumeroNota = await GerarNumeroNotaFiscal();
+            notaFiscal.DataEmissao = DateTime.Now;
+
+            _dbContext.NotasFiscais.Add(notaFiscal);
+            await _dbContext.SaveChangesAsync();
+        }
+        private async Task<int> GerarNumeroNotaFiscal()
+        {  
+            Random random = new Random();
+            int numeroNota = random.Next(10000, 99999);
+            return numeroNota;
+        }
     }
 
 }

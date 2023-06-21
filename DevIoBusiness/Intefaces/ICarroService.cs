@@ -10,5 +10,7 @@ namespace DevIoBusiness.Interfaces
         Task<Carro> UpdateCarro(Carro carro);
         Task<bool> DeactivateCarro(int id);
         Task<bool> ActivateCarro(int id);
+        Task AtualizarEstadoCarroAposVenda(int id);
+
     }
 }

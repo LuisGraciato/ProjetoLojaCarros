@@ -15,6 +15,7 @@ namespace DevIoBusiness.Intefaces
         Task AddNotaFiscal(NotaFiscal notaFiscal);
         Task UpdateNotaFiscal(NotaFiscal notaFiscal);
         Task DeleteNotaFiscal(int Id);
+        Task GerarNotaFiscalAposVenda(NotaFiscal notaFiscal);
     }
 
 }

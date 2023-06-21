@@ -1,11 +1,6 @@
 ﻿using DevIoBusiness.Intefaces;
+using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevIoBusiness.Services
 {
@@ -13,11 +8,14 @@ namespace DevIoBusiness.Services
     {
         private readonly IVendaRepository _vendaRepository;
         private readonly INotaFiscalService _notaFiscalService;
+        private readonly ICarroService _carroService;
 
-        public VendaService(IVendaRepository vendaRepository, INotaFiscalService notaFiscalService)
+        public VendaService(IVendaRepository vendaRepository, INotaFiscalService notaFiscalService, ICarroService carroService)
         {
             _vendaRepository = vendaRepository;
             _notaFiscalService = notaFiscalService;
+            _carroService = carroService;
+
         }
 
         public async Task<IEnumerable<Venda>> GetAllVendas()
@@ -34,16 +32,17 @@ namespace DevIoBusiness.Services
         {
             await _vendaRepository.AddVenda(venda);
 
-            Random random = new Random();
-            int numeroNota = random.Next(10000, 99999);
             var notaFiscal = new NotaFiscal
             {
-                NumeroNota = numeroNota,
-                DataEmissao = DateTime.Now,
                 IdVenda = venda.IdVenda
             };
 
-            await _notaFiscalService.AddNotaFiscal(notaFiscal);
+            await _notaFiscalService.GerarNotaFiscalAposVenda(notaFiscal);
+
+            foreach (var carroVenda in venda.CarrosVendidos)
+            {
+                await _carroService.AtualizarEstadoCarroAposVenda(carroVenda.IdCarro);
+            }
         }
 
         public async Task UpdateVenda(Venda venda)

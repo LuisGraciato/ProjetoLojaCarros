@@ -43,5 +43,10 @@ namespace DevIoBusiness.Services
         {
             return await _carroRepository.ActivateCarro(id);
         }
+
+        public async Task AtualizarEstadoCarroAposVenda(int id)
+        {
+           await _carroRepository.AtualizarEstadoCarroAposVenda(id);
+        }
     }
 }

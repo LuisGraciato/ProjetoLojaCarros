@@ -46,6 +46,11 @@ namespace DevIoBusiness.Services
         {
             await _notaFiscalRepository.DeleteNotaFiscal(id);
         }
+
+        public async Task GerarNotaFiscalAposVenda(NotaFiscal notaFiscal)
+        {
+            await _notaFiscalRepository.GerarNotaFiscalAposVenda(notaFiscal);
+        }
     }
 
 }

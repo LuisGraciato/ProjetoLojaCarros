@@ -59,5 +59,20 @@ namespace DevIoData.Repository
             await _dbContext.SaveChangesAsync();
             return true;
         }
+        public async Task AtualizarEstadoCarroAposVenda(int idCarro)
+        {
+            var carro = await GetCarroById(idCarro);
+
+            if (carro == null || !carro.Ativo)
+            {
+                throw new Exception("Carro já vendido ou fora de estoque para venda.");
+            }
+            else
+            {
+                carro.Ativo = false;
+            }
+            await _dbContext.SaveChangesAsync();
+        }
+
     }
 }
