@@ -3,9 +3,6 @@ using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
 using LojaCarrosApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace LojaCarrosApi.Controllers
 {

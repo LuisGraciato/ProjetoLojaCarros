@@ -67,8 +67,8 @@ namespace LojaCarrosApi.Controllers
 
             cliente.Nome = clienteViewModel.Nome;
             cliente.Email = clienteViewModel.Email;
-            cliente.IdEndereco= clienteViewModel.IdEndereco;
-            cliente.IdTelefone= clienteViewModel.IdTelefone;
+            cliente.IdEndereco = clienteViewModel.IdEndereco;
+            cliente.IdTelefone = clienteViewModel.IdTelefone;
             cliente.DataAlteracao = DateTime.Now;
 
             var updatedCliente = await _clienteService.UpdateCliente(cliente);

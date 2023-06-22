@@ -30,6 +30,11 @@ namespace DevIoBusiness.Services
 
         public async Task AddVenda(Venda venda)
         {
+            foreach (var carroVenda in venda.CarrosVendidos)
+            {
+                await _carroService.AtualizarEstadoCarroAposVenda(carroVenda.IdCarro);
+            }
+
             await _vendaRepository.AddVenda(venda);
 
             var notaFiscal = new NotaFiscal
@@ -38,11 +43,7 @@ namespace DevIoBusiness.Services
             };
 
             await _notaFiscalService.GerarNotaFiscalAposVenda(notaFiscal);
-
-            foreach (var carroVenda in venda.CarrosVendidos)
-            {
-                await _carroService.AtualizarEstadoCarroAposVenda(carroVenda.IdCarro);
-            }
+   
         }
 
         public async Task UpdateVenda(Venda venda)

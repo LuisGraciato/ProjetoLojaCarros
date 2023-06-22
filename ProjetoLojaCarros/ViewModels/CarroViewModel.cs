@@ -2,7 +2,6 @@
 
 namespace LojaCarrosApi.ViewModels
 {
-    // CarroDTO
     public class CarroViewModel
     {
         public int IdCarro { get; private set; }

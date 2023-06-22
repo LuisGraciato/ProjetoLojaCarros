@@ -4,7 +4,7 @@ namespace DevIOApi.ViewModels
 {
     public class TelefoneViewModel
     {
-        public int IdTelefone { get; private set; } 
+        public int IdTelefone { get; private set; }
 
         [Required(ErrorMessage = "O campo Número é obrigatório.")]
         public string Numero { get; set; }

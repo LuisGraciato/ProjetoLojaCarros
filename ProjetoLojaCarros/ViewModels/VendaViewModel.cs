@@ -1,5 +1,4 @@
-﻿using DevIoBusiness.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DevIOApi.ViewModels
 {
@@ -21,7 +20,7 @@ namespace DevIOApi.ViewModels
     {
         public int IdCarro { get; set; }
         public double Valor { get; set; }
-        
+
     }
     public class VendaFormaPagamentoViewModel
     {

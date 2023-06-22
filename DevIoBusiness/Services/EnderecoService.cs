@@ -1,7 +1,5 @@
 ﻿using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DevIoBusiness.Services
 {

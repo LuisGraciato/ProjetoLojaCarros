@@ -2,11 +2,6 @@
 using DevIoBusiness.Models;
 using DevIoData.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevIoData.Repository
 {
@@ -67,7 +62,7 @@ namespace DevIoData.Repository
             await _dbContext.SaveChangesAsync();
         }
         private async Task<int> GerarNumeroNotaFiscal()
-        {  
+        {
             Random random = new Random();
             int numeroNota = random.Next(10000, 99999);
             return numeroNota;

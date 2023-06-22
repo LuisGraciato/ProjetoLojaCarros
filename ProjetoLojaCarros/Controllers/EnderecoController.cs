@@ -69,7 +69,7 @@ namespace LojaCarrosApi.Controllers
             endereco.Bairro = enderecoViewModel.Bairro;
             endereco.Cep = enderecoViewModel.Cep;
             endereco.Numero = enderecoViewModel.Numero;
-            endereco.Estado= enderecoViewModel.Estado;
+            endereco.Estado = enderecoViewModel.Estado;
             endereco.Complemento = enderecoViewModel.Complemento;
             endereco.DataAlteracao = DateTime.Now;
 

@@ -1,7 +1,5 @@
 ﻿using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DevIoBusiness.Services
 {
@@ -46,7 +44,7 @@ namespace DevIoBusiness.Services
 
         public async Task AtualizarEstadoCarroAposVenda(int id)
         {
-           await _carroRepository.AtualizarEstadoCarroAposVenda(id);
+            await _carroRepository.AtualizarEstadoCarroAposVenda(id);
         }
     }
 }

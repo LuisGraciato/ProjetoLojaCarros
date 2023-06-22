@@ -114,7 +114,7 @@ namespace DevIoData.Context
                 .WithMany(c => c.VendaCarros)
                 .HasForeignKey(vc => vc.IdCarro)
                 .OnDelete(DeleteBehavior.Restrict);
-           
+
             modelBuilder.Entity<NotaFiscal>()
                 .HasKey(nf => nf.IdNotaFiscal);
 

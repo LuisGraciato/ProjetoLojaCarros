@@ -47,14 +47,12 @@ namespace DevIoData.Repository
         {
             _dbContext.Vendas.Add(venda);
 
-            await _dbContext.SaveChangesAsync();
-
             var novosCarrosVendidos = new List<VendaCarro>();
             var formaPagamentoUsada = new List<VendaFormaPagamento>();
 
             foreach (var CarroVenda in venda.CarrosVendidos)
             {
-                 var vendaCarro = new VendaCarro
+                var vendaCarro = new VendaCarro
                 {
                     IdVenda = venda.IdVenda,
                     IdCarro = CarroVenda.IdCarro,
@@ -62,7 +60,6 @@ namespace DevIoData.Repository
                 };
 
                 novosCarrosVendidos.Add(vendaCarro);
-
             }
             foreach (var VendaFormaPagamento in venda.VendaFormasPagamento)
             {

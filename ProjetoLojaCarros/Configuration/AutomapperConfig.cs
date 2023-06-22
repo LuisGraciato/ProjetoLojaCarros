@@ -20,7 +20,7 @@ namespace DevIOApi.Configuration
             CreateMap<Adicionais, AdicionaisCompletoViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteCompletoViewModel>().ReverseMap();
-            CreateMap<Funcionario,FuncionarioViewModel>().ReverseMap();
+            CreateMap<Funcionario, FuncionarioViewModel>().ReverseMap();
             CreateMap<Funcionario, FuncionarioCompletoViewModel>().ReverseMap();
             CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
             CreateMap<Endereco, EnderecoCompletoViewModel>().ReverseMap();

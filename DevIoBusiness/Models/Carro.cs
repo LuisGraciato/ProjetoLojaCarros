@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevIoBusiness.Models
 {
-
     public class Carro
     {
         [Key]
@@ -15,7 +14,6 @@ namespace DevIoBusiness.Models
         public string EstadoConservacao { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataAlteracao { get; set; }
-
 
         [ForeignKey("Modelo")]
         public int IdModelo { get; set; }

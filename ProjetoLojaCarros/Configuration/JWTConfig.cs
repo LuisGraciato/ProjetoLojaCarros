@@ -32,8 +32,8 @@ namespace LojaCarrosApi.Configuration
                     ValidateAudience = true,
                     ValidAudience = appSettings.ValidoEm,
                     ValidIssuer = appSettings.Emissor
-                    
-                   
+
+
                 };
             });
 

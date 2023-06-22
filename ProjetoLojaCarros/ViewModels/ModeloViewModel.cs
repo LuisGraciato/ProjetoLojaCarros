@@ -2,7 +2,6 @@
 
 namespace LojaCarrosApi.ViewModels
 {
-    // ModeloDTO
     public class ModeloViewModel
     {
         public int IdModelo { get; private set; }
@@ -20,10 +19,10 @@ namespace LojaCarrosApi.ViewModels
         public int NumeroPortas { get; set; }
 
         [Required(ErrorMessage = "O campo número de lugares é obrigatório.")]
-        public int NumeroLugares { get; set;  }
+        public int NumeroLugares { get; set; }
 
         [Required(ErrorMessage = "O campo ano de fabricação é obrigatório.")]
-        public int AnoFabricacao { get; set;  }
+        public int AnoFabricacao { get; set; }
 
         [Required(ErrorMessage = "O campo ano do modelo é obrigatório.")]
         public int AnoModelo { get; set; }

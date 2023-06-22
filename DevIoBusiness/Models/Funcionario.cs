@@ -14,7 +14,6 @@ namespace DevIoBusiness.Models
 
         public string Cargo { get; set; }
 
-
         public Funcionario()
         {
 

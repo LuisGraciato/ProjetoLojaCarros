@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DevIoBusiness.Models
 {
@@ -13,10 +12,7 @@ namespace DevIoBusiness.Models
         public bool Ativo { get; set; }
         public DateTime DataAlteracao { get; set; }
 
-
-
         public List<CarroAdicionais> Carros { get; set; }
-
 
         public Adicionais()
         {
