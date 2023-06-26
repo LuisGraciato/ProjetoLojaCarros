@@ -73,7 +73,6 @@ namespace LojaCarrosApi.Controllers
             carro.IdModelo = carroViewModel.IdModelo;
             carro.DataAlteracao = DateTime.Now;
             
-
             var updatedCarro = await _carroService.UpdateCarro(carro);
             var updatedCarroViewModel = _mapper.Map<CarroViewModel>(updatedCarro);
 
