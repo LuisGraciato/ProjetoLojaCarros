@@ -72,19 +72,7 @@ namespace LojaCarrosApi.Controllers
             carro.EstadoConservacao = carroViewModel.EstadoConservacao;
             carro.IdModelo = carroViewModel.IdModelo;
             carro.DataAlteracao = DateTime.Now;
-
-            carro.CarroAdicionais.Clear(); // Limpar a lista atual
-
-            foreach (var carroAdicionalViewModel in carroViewModel.CarroAdicionais)
-            {
-                var novoCarroAdicional = new CarroAdicionais
-                {
-                    IdAdicionais = carroAdicionalViewModel.IdAdicionais,
-                    Valor = carroAdicionalViewModel.Valor
-                };
-
-                carro.CarroAdicionais.Add(novoCarroAdicional);
-            }
+            
 
             var updatedCarro = await _carroService.UpdateCarro(carro);
             var updatedCarroViewModel = _mapper.Map<CarroViewModel>(updatedCarro);
