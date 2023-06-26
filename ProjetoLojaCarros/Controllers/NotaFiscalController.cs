@@ -35,7 +35,7 @@ namespace DevIOApi.Controllers
             if (notaFiscal == null)
                 return NotFound();
 
-            var notaFiscalViewModel = _mapper.Map<NotaFiscalViewModel>(notaFiscal);
+            var notaFiscalViewModel = _mapper.Map<NotaFiscalCompletaViewModel>(notaFiscal);
             return Ok(notaFiscalViewModel);
         }
 

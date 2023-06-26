@@ -35,7 +35,7 @@ namespace LojaCarrosApi.Controllers
             if (endereco == null)
                 return NotFound();
 
-            var enderecoViewModel = _mapper.Map<EnderecoViewModel>(endereco);
+            var enderecoViewModel = _mapper.Map<EnderecoCompletoViewModel>(endereco);
             return Ok(enderecoViewModel);
         }
 

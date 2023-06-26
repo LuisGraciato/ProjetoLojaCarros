@@ -34,7 +34,7 @@ namespace LojaCarrosApi.Controllers
             if (marca == null)
                 return NotFound();
 
-            var marcaViewModel = _mapper.Map<MarcaViewModel>(marca);
+            var marcaViewModel = _mapper.Map<MarcaCompletaViewModel>(marca);
             return Ok(marcaViewModel);
         }
 

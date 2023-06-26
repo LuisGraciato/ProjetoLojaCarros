@@ -35,7 +35,7 @@ namespace LojaCarrosApi.Controllers
             if (cliente == null)
                 return NotFound();
 
-            var clienteViewModel = _mapper.Map<ClienteViewModel>(cliente);
+            var clienteViewModel = _mapper.Map<ClienteCompletoViewModel>(cliente);
             return Ok(clienteViewModel);
         }
 

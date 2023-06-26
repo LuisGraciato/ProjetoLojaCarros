@@ -61,6 +61,7 @@ namespace DevIOApi.Controllers
                 return NotFound();
 
             formaPagamento.Descricao = formaPagamentoViewModel.Descricao;
+            formaPagamento.Nome = formaPagamentoViewModel.Nome;
 
             await _formaPagamentoService.UpdateFormaPagamento(formaPagamento);
             return Ok();
