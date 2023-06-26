@@ -23,6 +23,14 @@ namespace LojaCarrosApi.ViewModels
         public string EstadoConservacao { get; set; }
         public int IdModelo { get; set; }
 
+        public List<CarroAdicionaisViewModel> CarroAdicionais { get; set; }
+
+    }
+    public class CarroAdicionaisViewModel
+    {
+        public int IdAdicionais { get; set; }
+        public double Valor { get; set; }
+
     }
 
 }

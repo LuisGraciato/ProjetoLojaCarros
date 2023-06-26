@@ -23,7 +23,7 @@ namespace LojaCarrosApi.Controllers
         public async Task<IActionResult> GetAllAdicionais()
         {
             var Adicionais = await _AdicionaisService.GetAllAdicionais();
-            var AdicionaisViewModels = _mapper.Map<IEnumerable<AdicionaisCompletoViewModel>>(Adicionais);
+            var AdicionaisViewModels = _mapper.Map<IEnumerable<AdicionaisViewModel>>(Adicionais);
             return Ok(AdicionaisViewModels);
         }
 
@@ -44,14 +44,9 @@ namespace LojaCarrosApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var Adicionais = _mapper.Map<Adicionais>(adicionaisViewModel);
-            Adicionais.Ativo = true;
-            Adicionais.DataAlteracao = DateTime.Now;
-
-            var createdAdicionais = await _AdicionaisService.AddAdicionais(Adicionais);
-            var createdAdicionaisViewModel = _mapper.Map<AdicionaisViewModel>(createdAdicionais);
-
-            return CreatedAtAction(nameof(GetAdicionaisById), new { id = createdAdicionais.IdAdicionais }, createdAdicionaisViewModel);
+            var adicionais = _mapper.Map<Adicionais>(adicionaisViewModel);
+            await _AdicionaisService.AddAdicionais(adicionais);
+            return Ok();
         }
 
         [HttpPut("{id}")]
@@ -66,33 +61,21 @@ namespace LojaCarrosApi.Controllers
 
             Adicionais.Nome = adicionaisViewModel.Nome;
             Adicionais.Descricao = adicionaisViewModel.Descricao;
-            Adicionais.Preco = adicionaisViewModel.Preco;           // Falta Setar a chave estrangeira Id do Carro, Rever depois
-            Adicionais.DataAlteracao = DateTime.Now;
+            Adicionais.Preco = adicionaisViewModel.Preco;
 
-            var updatedAdicionais = await _AdicionaisService.UpdateAdicionais(Adicionais);
-            var updatedAdicionaisViewModel = _mapper.Map<AdicionaisViewModel>(updatedAdicionais);
-
-            return Ok(updatedAdicionaisViewModel);
+            await _AdicionaisService.UpdateAdicionais(Adicionais);
+            return Ok();
         }
 
-        [HttpPut("deactivate/{id}")]
-        public async Task<IActionResult> DeactivateAdicionais(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAdicionais(int id)
         {
-            var result = await _AdicionaisService.DeactivateAdicionais(id);
-            if (!result)
+            var adicionais = await _AdicionaisService.GetAdicionaisById(id);
+            if (adicionais == null)
                 return NotFound();
 
-            return NoContent();
-        }
-
-        [HttpPut("activate/{id}")]
-        public async Task<IActionResult> ActivateAdicionais(int id)
-        {
-            var result = await _AdicionaisService.ActivateAdicionais(id);
-            if (!result)
-                return NotFound();
-
-            return NoContent();
+            await _AdicionaisService.DeleteAdicionais(id);
+            return Ok();
         }
     }
 }

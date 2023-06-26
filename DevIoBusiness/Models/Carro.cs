@@ -19,7 +19,7 @@ namespace DevIoBusiness.Models
         public int IdModelo { get; set; }
         public Modelo Modelo { get; set; }
 
-        public List<CarroAdicionais> Adicionais { get; set; }
+        public ICollection<CarroAdicionais> CarroAdicionais { get; set; }
         public ICollection<VendaCarro> VendaCarros { get; set; }
 
         public Carro()

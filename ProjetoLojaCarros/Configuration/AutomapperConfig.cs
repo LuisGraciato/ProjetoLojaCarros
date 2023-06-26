@@ -32,6 +32,7 @@ namespace DevIOApi.Configuration
             CreateMap<Venda, VendaViewModel>().ReverseMap();
             CreateMap<CarroVendaViewModel, VendaCarro>().ReverseMap();
             CreateMap<VendaFormaPagamentoViewModel, VendaFormaPagamento>().ReverseMap();
+            CreateMap<CarroAdicionaisViewModel, CarroAdicionais>().ReverseMap();
 
         }
 

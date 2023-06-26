@@ -20,10 +20,15 @@ namespace DevIoData.Context
         public DbSet<VendaFormaPagamento> VendaFormasPagamento { get; set; }
         public DbSet<VendaCarro> VendaCarros { get; set; }
         public DbSet<NotaFiscal> NotasFiscais { get; set; }
+        public DbSet<CarroAdicionais> CarroAdicionais { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Adicionais>()
+               .HasKey(t => t.IdAdicionais);
+
             modelBuilder.Entity<Carro>()
                 .HasOne(c => c.Modelo)
                 .WithMany(m => m.Carros)
@@ -37,17 +42,19 @@ namespace DevIoData.Context
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CarroAdicionais>()
-                .HasKey(cc => new { cc.IdCarro, cc.IdAdicionais });
+                 .HasKey(t => t.IdCarroAdicionais);
+
+            modelBuilder.Entity<Carro>()
+                .HasMany(v => v.CarroAdicionais)
+                .WithOne(vp => vp.Carro)
+                .HasForeignKey(vp => vp.IdCarro)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CarroAdicionais>()
-                .HasOne(cc => cc.Carro)
-                .WithMany(c => c.Adicionais)
-                .HasForeignKey(cc => cc.IdCarro);
-
-            modelBuilder.Entity<CarroAdicionais>()
-                .HasOne(cc => cc.Adicionais)
-                .WithMany()
-                .HasForeignKey(cc => cc.IdAdicionais);
+                .HasOne(vp => vp.Adicionais)
+                .WithMany(fp => fp.CarroAdicionais)
+                .HasForeignKey(vp => vp.IdAdicionais)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Endereco>()
                .HasKey(e => e.IdEndereco);

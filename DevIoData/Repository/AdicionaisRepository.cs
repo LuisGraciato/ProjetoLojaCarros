@@ -38,26 +38,14 @@ namespace DevIoData.Repository
             return adicionais;
         }
 
-        public async Task<bool> DeactivateAdicionais(int id)
+        public async Task DeleteAdicionais(int id)
         {
-            var carroAdicionais = await _dbContext.Adicionais.FindAsync(id);
-            if (carroAdicionais == null)
-                return false;
-
-            carroAdicionais.Ativo = false;
-            await _dbContext.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> ActivateAdicionais(int id)
-        {
-            var carroAdicionais = await _dbContext.Adicionais.FindAsync(id);
-            if (carroAdicionais == null)
-                return false;
-
-            carroAdicionais.Ativo = true;
-            await _dbContext.SaveChangesAsync();
-            return true;
+            var adicionais = await _dbContext.Adicionais.FindAsync(id);
+            if (adicionais != null)
+            {
+                _dbContext.Adicionais.Remove(adicionais);
+                await _dbContext.SaveChangesAsync();
+            }
         }
     }
 }

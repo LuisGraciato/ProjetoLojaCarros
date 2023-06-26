@@ -8,7 +8,6 @@ namespace DevIoBusiness.Interfaces
         Task<Adicionais> GetAdicionaisById(int id);
         Task<Adicionais> AddAdicionais(Adicionais adicionais);
         Task<Adicionais> UpdateAdicionais(Adicionais adicionais);
-        Task<bool> DeactivateAdicionais(int id);
-        Task<bool> ActivateAdicionais(int id);
+        Task DeleteAdicionais(int id);
     }
 }

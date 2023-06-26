@@ -1,4 +1,5 @@
-﻿using DevIoBusiness.Interfaces;
+﻿using DevIoBusiness.Intefaces;
+using DevIoBusiness.Interfaces;
 using DevIoBusiness.Models;
 
 namespace DevIoBusiness.Services
@@ -32,14 +33,9 @@ namespace DevIoBusiness.Services
             return await _AdicionaisRepository.UpdateAdicionais(adicionais);
         }
 
-        public async Task<bool> DeactivateAdicionais(int id)
+        public async Task DeleteAdicionais(int id)
         {
-            return await _AdicionaisRepository.DeactivateAdicionais(id);
-        }
-
-        public async Task<bool> ActivateAdicionais(int id)
-        {
-            return await _AdicionaisRepository.ActivateAdicionais(id);
+            await _AdicionaisRepository.DeleteAdicionais(id);
         }
     }
 }

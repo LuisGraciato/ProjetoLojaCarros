@@ -15,7 +15,6 @@ namespace LojaCarrosApi.ViewModels
         [Required(ErrorMessage = "O campo Preço é obrigatório.")]
         [Range(0, double.MaxValue, ErrorMessage = "O campo Preço deve ser um valor positivo.")]
         public double Preco { get; set; }
-        public int IdCarro { get; set; }
     }
 
 }

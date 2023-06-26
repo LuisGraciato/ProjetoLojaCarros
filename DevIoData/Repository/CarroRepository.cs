@@ -16,7 +16,20 @@ namespace DevIoData.Repository
 
         public async Task<IEnumerable<Carro>> GetAllCarros()
         {
-            return await _dbContext.Carros.ToListAsync();
+            var carros = await _dbContext.Carros
+                .Include(v => v.CarroAdicionais)
+                .ToListAsync();
+
+            foreach (var carro in carros)
+            {
+                carro.CarroAdicionais = carro.CarroAdicionais.Select(cv => new CarroAdicionais
+                {
+                    IdAdicionais = cv.IdAdicionais,
+                    Valor = cv.Valor
+                }).ToList();    
+            }
+
+            return carros;
         }
 
         public async Task<Carro> GetCarroById(int id)
