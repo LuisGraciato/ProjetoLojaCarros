@@ -6,19 +6,16 @@ namespace DevIoBusiness.Models
     {
         [Key]
         public int IdMarca { get; private set; }
+        public string Nome { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataAlteracao { get; set; }
 
-        [Required(ErrorMessage = "O campo Nome é obrigatório.")]
-        public string Nome { get; private set; }
-        public bool Ativo { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public ICollection<Modelo> Modelos { get; set; }
 
-        public List<Modelo> Modelos { get; private set; }
-
-        public Marca(string nome, bool ativo)
+        public Marca()
         {
-            Nome = nome;
-            Ativo = ativo;
-            
         }
+
     }
+
 }

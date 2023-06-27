@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ProjetoLojaCarros.Controllers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -12,7 +11,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 namespace LojaCarrosApi.Controllers
 {
     [Route("api")]
-    public class AuthController : MainController
+    public class AuthController : ControllerBase
     {
         private readonly SignInManager<IdentityUser> _singInManager;
         private readonly UserManager<IdentityUser> _userManager;
